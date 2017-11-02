@@ -1,12 +1,13 @@
 # adyoulike
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.16.0.
 
 ## Build & development
+Run `npm install` and  `bower install` 
 
-Run `grunt` for building and `grunt serve` for preview.
+Run `gulp` and  `gulp start:server` 
 
-## Testing
+Next go to `http://localhost:9000`
 
-Running `grunt test` will run the unit tests with karma.
+
+
+

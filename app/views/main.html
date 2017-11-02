@@ -1,23 +1,48 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<table  class="table table-hover grid">
+    <thead id="widthmax" class="thead-inverse">
+        <tr class="row">
+            <th class="col-md-3">ID campaigns</th>
+            <th class="col-md-3">Start</th>
+            <th class="col-md-3">End</th>
+            <th class="col-md-3">Brand</th>
+        </tr>
+    </thead>
+    <tbody id="campaigns">
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    </tbody>
+</table>
+<div class="row">
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+  <div class="col-sm-10">
+    <!-- FORM ============ -->
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+    <form name="userForm" ng-submit="submitForm()" novalidate>
+
+      <!-- Brand -->
+      <div class="form-group" ng-class="{ }">
+        <label>Brand</label>
+        <select class="form-control" name="singleSelect" id="ListBrands" ng-model="data.singleSelect" required>
+        </select>
+        <p ng-show="userForm.brand.$invalid && !userForm.name.$pristine" class="help-block">You brand is required.</p>
+      </div>
+
+      <!-- Start -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+        <label>Start campaign</label>
+          <input ng-model="dates.start" id="start" class="form-control" datepicker-popup="MM/dd/yyyy" utc init-date="today" max-date="dates.end" is-open="open.start" ng-click="open.start = true" data-before-render="startDateBeforeRender($dates)" />
+          <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+      </div>
+
+      <!-- End -->
+      <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+        <label>End campaign</label>
+        <input ng-model="dates.end" id="end" class="form-control" datepicker-popup="MM/dd/yyyy" utc init-date="utcToDate(dates.start).toLocaleString()" min-date="utcToDate(dates.start).getTime() + oneDay" is-open="open.end" ng-click="open.end = true" />
+
+      </div>
+
+
+      <button id="addCamp" type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+
+    </form>
+  </div>
+
